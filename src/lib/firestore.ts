@@ -125,6 +125,23 @@ export async function setContactInfo(info: ContactInfo): Promise<void> {
     });
 }
 
+// Hero Image
+export async function getHeroImageUrl(): Promise<string | null> {
+    const docRef = doc(db, SETTINGS_COLLECTION, "hero");
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) return null;
+    return docSnap.data().url;
+}
+
+export async function setHeroImageUrl(url: string): Promise<void> {
+    const docRef = doc(db, SETTINGS_COLLECTION, "hero");
+    await setDoc(docRef, {
+        url,
+        updatedAt: Timestamp.now(),
+    });
+}
+
 // Filtres
 export async function getProjectsByFilter(
     type: "pro" | "universitaire",

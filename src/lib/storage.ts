@@ -28,6 +28,12 @@ export async function uploadLogo(file: File): Promise<string> {
     return uploadImage(file, path);
 }
 
+export async function uploadHeroImage(file: File): Promise<string> {
+    const extension = file.name.split(".").pop();
+    const path = `hero/hero.${extension}`;
+    return uploadImage(file, path);
+}
+
 export async function deleteImage(path: string): Promise<void> {
     const storageRef = ref(storage, path);
     await deleteObject(storageRef);

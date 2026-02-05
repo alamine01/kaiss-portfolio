@@ -78,6 +78,7 @@ export default function AdminDashboard() {
                     <Link href="/admin/cv">CV</Link>
                     <Link href="/admin/logo">Logo</Link>
                     <Link href="/admin/contact">Contact</Link>
+                    <Link href="/admin/hero">Accueil</Link>
                     <Link href="/" target="_blank">Voir le site</Link>
                     <button
                         onClick={handleLogout}

@@ -9,6 +9,7 @@ import { getLogoUrl } from "@/lib/firestore";
 export default function Header() {
     const pathname = usePathname();
     const [logoUrl, setLogoUrl] = useState<string | null>(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         loadLogo();
@@ -42,26 +43,42 @@ export default function Header() {
                     )}
                 </Link>
 
-                <nav className="nav">
+                <button
+                    className="mobile-menu-btn"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="Menu"
+                >
+                    {isMenuOpen ? "✕" : "☰"}
+                </button>
+
+                <nav className={`nav ${isMenuOpen ? "mobile-active" : ""}`}>
                     <Link
                         href="/projets-pro"
                         className={`nav-link ${isActive("/projets-pro") ? "active" : ""}`}
+                        onClick={() => setIsMenuOpen(false)}
                     >
                         Projets Professionnels
                     </Link>
                     <Link
                         href="/projets-universitaires"
                         className={`nav-link ${isActive("/projets-universitaires") ? "active" : ""}`}
+                        onClick={() => setIsMenuOpen(false)}
                     >
                         Projets Universitaires
                     </Link>
                     <Link
                         href="/cv"
                         className={`nav-link ${isActive("/cv") ? "active" : ""}`}
+                        onClick={() => setIsMenuOpen(false)}
                     >
                         mon CV
                     </Link>
-                    <Link href="/contact" className="nav-icon" title="Contact">
+                    <Link
+                        href="/contact"
+                        className="nav-icon"
+                        title="Contact"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
                         ✉
                     </Link>
                 </nav>

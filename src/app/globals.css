@@ -68,6 +68,8 @@ img {
 .page {
   min-height: 100vh;
   padding-top: 100px;
+  padding-bottom: 50px;
+  /* Ajout d'espace en bas de page */
 }
 
 /* Header */
@@ -170,6 +172,38 @@ img {
   margin-bottom: 20px;
 }
 
+.hero-image {
+  flex: 0 0 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  /* Indispensable pour Image fill */
+}
+
+.hero-image-placeholder span {
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+
+.hero-img-dynamic {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  display: block;
+  box-shadow: var(--shadow-lg);
+}
+
 .hero-name span {
   color: var(--color-white);
 }
@@ -190,16 +224,7 @@ img {
   cursor: pointer;
 }
 
-.hero-image {
-  flex: 0 0 400px;
-  position: relative;
-}
-
-.hero-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
+/* .hero-image styles moved up */
 
 .tools {
   margin-top: 40px;
@@ -214,6 +239,8 @@ img {
 .tools-icons {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
+  /* Ajout pour la sécurité responsive */
 }
 
 .tool-icon {
@@ -1036,6 +1063,17 @@ img {
    Desktop (>1024px), Tablet (768-1024px), Mobile (<768px)
    ============================================ */
 
+/* Mobile Menu Button - Hidden on Desktop */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
 /* TABLET - 768px to 1024px */
 @media (max-width: 1024px) {
 
@@ -1146,7 +1184,8 @@ img {
 
   /* Page Layout */
   .page {
-    padding-top: 80px;
+    padding-top: 120px;
+    /* Augmenté pour éviter que le header ne cache le titre */
   }
 
   /* Header */
@@ -1158,19 +1197,53 @@ img {
     font-size: 1.4rem;
   }
 
-  .nav {
-    display: none;
-  }
-
-  /* Mobile Menu Button - Add if needed */
+  /* Mobile Menu Button */
   .mobile-menu-btn {
     display: flex;
     width: 40px;
     height: 40px;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.2);
+    z-index: 1002;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
+  }
+
+  /* Mobile Nav Overlay */
+  .nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #FF7B54 0%, #FFB26B 100%);
+    z-index: 1000;
+    padding: 100px 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+    /* Hidden by default */
+  }
+
+  .nav.mobile-active {
+    transform: translateX(0);
+    /* Visible when active */
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+    border: none;
+    padding: 10px;
+  }
+
+  .nav-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
   }
 
   /* Hero Section */
@@ -1184,8 +1257,15 @@ img {
 
   .hero-image {
     flex: none;
-    width: 200px;
+    width: 340px;
+    /* Moins large que 450px */
+    max-width: 90%;
     margin: 0 auto;
+  }
+
+  .hero-image-placeholder {
+    height: 350px;
+    /* Hauteur ajustée pour mobile */
   }
 
   .hero-content {
@@ -1492,9 +1572,7 @@ img {
     font-size: 1.5rem;
   }
 
-  .hero-image {
-    width: 160px;
-  }
+  /* .hero-image inherited from <768px query (100% width) */
 
   .page-title h1 {
     font-size: 1.4rem;

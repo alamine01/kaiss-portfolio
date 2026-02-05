@@ -1,7 +1,18 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
+import Image from "next/image";
+import { getHeroImageUrl } from "@/lib/firestore";
 
 export default function Home() {
+    const [heroUrl, setHeroUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        getHeroImageUrl().then(setHeroUrl);
+    }, []);
+
     return (
         <>
             <Header />
@@ -48,17 +59,17 @@ export default function Home() {
                     </div>
 
                     <div className="hero-image">
-                        <div style={{
-                            width: "400px",
-                            height: "500px",
-                            background: "rgba(255,255,255,0.1)",
-                            borderRadius: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>
-                            <span style={{ opacity: 0.7 }}>Photo de profil</span>
-                        </div>
+                        {heroUrl ? (
+                            <img
+                                src={heroUrl}
+                                alt="Touabi Kaïss"
+                                className="hero-img-dynamic"
+                            />
+                        ) : (
+                            <div className="hero-image-placeholder">
+                                <span>Photo de profil</span>
+                            </div>
+                        )}
                     </div>
                 </section>
             </main>
