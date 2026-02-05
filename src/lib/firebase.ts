@@ -4,12 +4,12 @@ import { getFirestore, initializeFirestore, persistentLocalCache, persistentMult
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDUyJBYEEJJYmwW9LpG46zfbkeMlNnXhnc",
-    authDomain: "kaiss-ab97a.firebaseapp.com",
-    projectId: "kaiss-ab97a",
-    storageBucket: "kaiss-ab97a.firebasestorage.app",
-    messagingSenderId: "169313689987",
-    appId: "1:169313689987:web:fc18fbc2b278b2bf2696b6"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
 // Initialize Firebase only once
