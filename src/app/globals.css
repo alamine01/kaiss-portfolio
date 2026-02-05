@@ -1058,6 +1058,48 @@ img {
   margin-bottom: 10px;
 }
 
+/* Admin Desktop Styles */
+.admin-header {
+  background: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 30px;
+}
+
+.admin-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.admin-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.admin-nav a {
+  font-weight: 500;
+  color: var(--color-gray);
+  transition: var(--transition);
+}
+
+.admin-nav a.active {
+  color: var(--color-coral);
+}
+
+.admin-nav a:hover {
+  color: var(--color-coral);
+}
+
+.admin-mobile-toggle {
+  display: none;
+  /* Hidden on desktop */
+}
+
 /* ============================================
    RESPONSIVE DESIGN - Complete Overhaul
    Desktop (>1024px), Tablet (768-1024px), Mobile (<768px)
@@ -1496,10 +1538,66 @@ img {
     font-size: 1.2rem;
   }
 
-  .admin-nav {
-    gap: 15px;
-    font-size: 0.85rem;
+  /* Admin Header Responsive */
+  .admin-header {
+    background: white;
+    position: relative;
+    z-index: 100;
   }
+
+  .admin-mobile-toggle {
+    display: flex !important;
+    /* Force display on mobile */
+    color: var(--color-dark) !important;
+    background: #f5f5f5;
+    z-index: 1002;
+  }
+
+  .admin-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--gradient-main);
+    z-index: 1001;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .admin-nav.mobile-active {
+    transform: translateX(0);
+  }
+
+  .admin-nav a,
+  .admin-nav button {
+    font-size: 1.2rem;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    background: transparent;
+  }
+
+  .admin-nav a:hover,
+  .admin-nav button:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .logout-btn {
+    margin-top: 20px;
+    background: #ffebee;
+    color: #d32f2f;
+    border-radius: 8px;
+    border: none;
+  }
+
 
   .admin-content {
     padding: 15px;

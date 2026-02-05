@@ -7,6 +7,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { getCVUrl, setCVUrl } from "@/lib/firestore";
 import { uploadCV } from "@/lib/storage";
+import AdminHeader from "@/components/AdminHeader";
 
 export default function AdminCVPage() {
     const router = useRouter();
@@ -79,14 +80,7 @@ export default function AdminCVPage() {
 
     return (
         <div className="admin-container">
-            <header className="admin-header">
-                <h1 className="admin-title">Gestion du CV</h1>
-                <nav className="admin-nav">
-                    <Link href="/admin">← Projets</Link>
-                    <Link href="/admin/cv">CV</Link>
-                    <Link href="/" target="_blank">Voir le site</Link>
-                </nav>
-            </header>
+            <AdminHeader />
 
             <div className="admin-content">
                 <div className="admin-section">

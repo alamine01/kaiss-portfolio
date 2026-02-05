@@ -7,6 +7,7 @@ import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { getProjects, deleteProject } from "@/lib/firestore";
 import { Project } from "@/lib/types";
+import AdminHeader from "@/components/AdminHeader";
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -38,11 +39,6 @@ export default function AdminDashboard() {
         }
     };
 
-    const handleLogout = async () => {
-        await signOut(auth);
-        router.push("/admin/login");
-    };
-
     const handleDelete = async (id: string) => {
         if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) return;
 
@@ -71,30 +67,7 @@ export default function AdminDashboard() {
 
     return (
         <div className="admin-container">
-            <header className="admin-header">
-                <h1 className="admin-title">Dashboard Admin</h1>
-                <nav className="admin-nav">
-                    <Link href="/admin">Projets</Link>
-                    <Link href="/admin/cv">CV</Link>
-                    <Link href="/admin/logo">Logo</Link>
-                    <Link href="/admin/contact">Contact</Link>
-                    <Link href="/admin/hero">Accueil</Link>
-                    <Link href="/" target="_blank">Voir le site</Link>
-                    <button
-                        onClick={handleLogout}
-                        style={{
-                            background: "rgba(255,255,255,0.2)",
-                            border: "none",
-                            color: "white",
-                            padding: "8px 16px",
-                            borderRadius: "20px",
-                            cursor: "pointer"
-                        }}
-                    >
-                        Déconnexion
-                    </button>
-                </nav>
-            </header>
+            <AdminHeader />
 
             <div className="admin-content">
                 <div className="admin-section">

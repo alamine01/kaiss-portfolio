@@ -8,6 +8,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { getHeroImageUrl, setHeroImageUrl } from "@/lib/firestore";
 import { uploadHeroImage } from "@/lib/storage";
+import AdminHeader from "@/components/AdminHeader";
 
 export default function AdminHeroPage() {
     const router = useRouter();
@@ -81,17 +82,7 @@ export default function AdminHeroPage() {
 
     return (
         <div className="admin-container">
-            <header className="admin-header">
-                <h1 className="admin-title">Dashboard Admin</h1>
-                <nav className="admin-nav">
-                    <Link href="/admin">Projets</Link>
-                    <Link href="/admin/cv">CV</Link>
-                    <Link href="/admin/logo">Logo</Link>
-                    <Link href="/admin/contact">Contact</Link>
-                    <Link href="/admin/hero">Accueil</Link>
-                    <Link href="/" target="_blank">Voir le site</Link>
-                </nav>
-            </header>
+            <AdminHeader />
 
             <div className="admin-content">
                 <div className="admin-section">
